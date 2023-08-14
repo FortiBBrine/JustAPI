@@ -1,0 +1,55 @@
+
+plugins {
+    // Apply the org.jetbrains.kotlin.jvm Plugin to add support for Kotlin.
+    id 'org.jetbrains.kotlin.jvm' version '1.8.20'
+
+    // Apply the java-library plugin for API and implementation separation.
+    id 'java-library'
+}
+
+group = 'me.fortibrine'
+version = '1.0'
+
+repositories {
+    // Use Maven Central for resolving dependencies.
+    mavenCentral()
+    maven {
+        name = "spigotmc-repo"
+        url = "https://hub.spigotmc.org/nexus/content/repositories/snapshots/"
+    }
+    maven {
+        name = "sonatype"
+        url = "https://oss.sonatype.org/content/groups/public/"
+    }
+
+}
+
+dependencies {
+    compileOnly "org.spigotmc:spigot-api:1.13.2-R0.1-SNAPSHOT"
+    compileOnly 'org.projectlombok:lombok:1.18.26'
+    annotationProcessor 'org.projectlombok:lombok:1.18.26'
+}
+
+// Apply a specific Java toolchain to ease working on different environments.
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(8)
+    }
+}
+
+processResources {
+    def props = [version: version]
+    inputs.properties props
+    filteringCharset 'UTF-8'
+    filesMatching('plugin.yml') {
+        expand props
+    }
+}
+
+jar {
+    duplicatesStrategy DuplicatesStrategy.EXCLUDE
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
