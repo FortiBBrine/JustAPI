@@ -4,13 +4,7 @@ import me.fortibrine.justapi.main.JustAPI
 import org.bukkit.Location
 import org.bukkit.World
 
-class LocationUtils() {
-
-    private var plugin: JustAPI? = null
-    constructor(plugin: JustAPI) : this() {
-        this.plugin = plugin
-    }
-
+class LocationUtils(private val plugin: JustAPI) {
     fun getMinLocation(locationFirst: Location, locationSecond: Location): Location? {
         if (locationFirst.world?.name.equals(locationSecond.world?.name)) return null
         val world = locationFirst.world

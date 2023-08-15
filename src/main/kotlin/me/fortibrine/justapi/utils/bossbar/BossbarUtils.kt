@@ -8,12 +8,7 @@ import org.bukkit.boss.BarStyle
 import org.bukkit.boss.BossBar
 import org.bukkit.entity.Player
 
-class BossbarUtils() {
-
-    private var plugin: JustAPI? = null
-    constructor(plugin: JustAPI) : this() {
-        this.plugin = plugin
-    }
+class BossbarUtils(private val plugin: JustAPI) {
 
     fun sendBossbar(player: Player, title: String?, barColor: BarColor, barStyle: BarStyle, barFlags: Array<BarFlag>) {
 

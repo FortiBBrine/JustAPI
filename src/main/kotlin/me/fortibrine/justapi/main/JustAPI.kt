@@ -4,6 +4,8 @@ import me.fortibrine.justapi.utils.block.BlockUtil
 import me.fortibrine.justapi.utils.inventory.InventoryUtils
 import me.fortibrine.justapi.utils.block.LocationUtils
 import me.fortibrine.justapi.utils.bossbar.BossbarUtils
+import me.fortibrine.justapi.utils.bungeecord.BungeecordUtils
+import org.bukkit.Bukkit
 import org.bukkit.plugin.java.JavaPlugin
 
 class JustAPI: JavaPlugin() {
@@ -25,6 +27,9 @@ class JustAPI: JavaPlugin() {
     var bossbarUtils: BossbarUtils? = null
         private set
 
+    var bungeecordUtils: BungeecordUtils? = null
+        private set
+
     override fun onEnable() {
         super.onEnable()
 
@@ -34,6 +39,10 @@ class JustAPI: JavaPlugin() {
         this.inventoryUtils = InventoryUtils(this)
         this.bossbarUtils = BossbarUtils(this)
 
+        if (Bukkit.spigot().config.getBoolean("settings.bungeecord")) {
+            this.bungeecordUtils = BungeecordUtils(this)
+            Bukkit.getMessenger().registerOutgoingPluginChannel(this, "BungeeCord")
+        }
     }
 
     override fun onDisable() {
@@ -45,5 +54,6 @@ class JustAPI: JavaPlugin() {
         this.locationUtils = null
         this.inventoryUtils = null
         this.bossbarUtils = null
+        this.bungeecordUtils = null
     }
 }

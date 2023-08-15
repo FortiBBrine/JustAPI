@@ -5,13 +5,7 @@ import org.bukkit.Material
 import org.bukkit.World
 import org.bukkit.block.Block
 
-class BlockUtil() {
-
-    private var plugin: JustAPI? = null
-    constructor(plugin: JustAPI) : this() {
-        this.plugin = plugin
-    }
-
+class BlockUtil(private val plugin: JustAPI) {
     fun setBlock(x: Int, y: Int, z: Int, world: World, type: Material) {
         world.getBlockAt(x, y, z).type = type
     }
