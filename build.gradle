@@ -26,8 +26,6 @@ repositories {
 
 dependencies {
     compileOnly "org.spigotmc:spigot-api:1.13.2-R0.1-SNAPSHOT"
-    compileOnly 'org.projectlombok:lombok:1.18.26'
-    annotationProcessor 'org.projectlombok:lombok:1.18.26'
 }
 
 // Apply a specific Java toolchain to ease working on different environments.

@@ -1,3 +1,5 @@
 name: JustAPI
 main: me.fortibrine.justapi.main.JustAPI
 version: ${version}
+
+api-version: 1.13
